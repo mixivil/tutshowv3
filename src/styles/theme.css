@@ -179,3 +179,10 @@
     line-height: 1.5;
   }
 }
+
+
+@layer components {
+  .field {
+    @apply w-full rounded-[1.15rem] border border-black/10 bg-white px-4 py-3.5 font-['Inter'] text-base text-[#0a0a0a] outline-none transition-colors placeholder:text-black/30 focus:border-[#c1121f];
+  }
+}

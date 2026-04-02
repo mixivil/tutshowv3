@@ -1,97 +1,137 @@
 import { ImageWithFallback } from './figma/ImageWithFallback';
-import { Users, Award, Sparkles } from 'lucide-react';
+
+const troupeMembers = [
+  {
+    name: 'Марина Орлова',
+    role: 'Актриса театра и кино',
+    note: 'Работает с камерной интонацией, точным ритмом сцены и тонким контактом со зрителем.',
+    photo: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop',
+  },
+  {
+    name: 'Илья Ветров',
+    role: 'Актер театра и кино',
+    note: 'Собирает сложные исторические образы без тяжеловесности и музейной дистанции.',
+    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop',
+  },
+  {
+    name: 'Алексей Миронов',
+    role: 'Ведущий спектакля',
+    note: 'Удерживает логику ток-шоу, темп выпуска и живой разговор между сценой и залом.',
+    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop',
+  },
+  {
+    name: 'Вера Лаврова',
+    role: 'Актриса',
+    note: 'Работает с пластикой образа, внутренним напряжением сцены и эмоциональной точностью.',
+    photo: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop',
+  },
+  {
+    name: 'Глеб Соколов',
+    role: 'Музыкант',
+    note: 'Отвечает за музыкальную драматургию и атмосферу, которая разворачивается внутри действия.',
+    photo: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop',
+  },
+  {
+    name: 'Елизавета Данилова',
+    role: 'Актриса',
+    note: 'Создает выразительные персонажи для площадок разного масштаба — от камерного зала до корпоратива.',
+    photo: 'https://images.unsplash.com/photo-1494888286974-456052645ee8?w=400&h=500&fit=crop',
+  },
+];
 
 export function About() {
   return (
-    <section id="about" className="relative py-24 bg-white overflow-hidden">
-      {/* Geometric Background Elements */}
-      <div className="absolute top-20 right-0 w-64 h-64 bg-red-600 opacity-10"></div>
-      <div className="absolute bottom-40 left-0 w-48 h-48 bg-yellow-500 opacity-10 rotate-45"></div>
-      <div className="absolute top-1/2 right-1/4 w-1 h-96 bg-red-600 opacity-20 rotate-12 hidden lg:block"></div>
+    <section id="about" className="border-b border-black/10 bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <div className="mb-12 max-w-3xl">
+          <div className="font-['Inter'] text-xs uppercase tracking-[0.2em] text-black/45">команда</div>
+          <h2 className="mt-4 font-['Manrope'] text-[clamp(2.2rem,5vw,4.5rem)] font-800 leading-[0.98] tracking-[-0.05em] text-[#111111]">
+            Команда, которая делает событие живым
+          </h2>
+          <p className="mt-6 font-['Inter'] text-lg leading-8 text-black/66">
+            «ТУТ ШОУ» — это не просто актерский состав, а собранная команда артистов и музыкантов,
+            которые умеют работать с пространством, аудиторией и ритмом конкретного мероприятия.
+            Каждый участник привносит в спектакль собственную энергию, опыт сцены и чувство живого контакта.
+          </p>
+        </div>
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left: Image */}
-          <div className="relative">
-            <div className="absolute -top-6 -left-6 w-24 h-24 border-8 border-red-600 z-10"></div>
-            <div className="relative">
-              <ImageWithFallback
-                src="https://images.unsplash.com/photo-1572232564961-5392cd6ebfe8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBhY3RvcnMlMjBwZXJmb3JtaW5nJTIwdGFsayUyMHNob3d8ZW58MXx8fHwxNzc0NTM4Mzk1fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-                alt="Актеры на сцене"
-                className="w-full h-[600px] object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+        <div className="grid gap-6 lg:grid-cols-3">
+          {[
+            {
+              title: 'Любая площадка',
+              text: 'Нам достаточно стола, двух кресел и трех стульев, чтобы превратить пространство в театр.',
+            },
+            {
+              title: 'Живое присутствие',
+              text: 'Герои разговаривают со зрителем здесь и сейчас — без музейной дистанции и хрестоматийного глянца.',
+            },
+            {
+              title: 'Точная настройка',
+              text: 'Формат можно адаптировать под корпоративное событие, фестиваль, частный вечер или культурную программу.',
+            },
+          ].map((item, index) => (
+            <div key={item.title} className="rounded-[2rem] border border-black/10 bg-[#fff8e8] p-7 sm:p-8">
+              <div className="font-['Inter'] text-sm text-[#c1121f]">0{index + 1}</div>
+              <h3 className="mt-6 font-['Manrope'] text-2xl font-700 tracking-[-0.04em] text-[#111111]">{item.title}</h3>
+              <p className="mt-4 font-['Inter'] text-base leading-7 text-black/62">{item.text}</p>
             </div>
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-yellow-500 z-10"></div>
+          ))}
+        </div>
+
+        <div className="mt-16 border-t border-black/10 pt-10">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <div className="font-['Inter'] text-xs uppercase tracking-[0.2em] text-black/45">участники</div>
+              <h3 className="mt-3 font-['Manrope'] text-[clamp(1.8rem,4vw,3rem)] font-800 leading-[1] tracking-[-0.05em] text-[#111111]">
+                Лица, которые держат ритм спектакля
+              </h3>
+            </div>
+            <p className="max-w-xl font-['Inter'] text-sm leading-6 text-black/58">
+              Каждый участник отвечает за свою часть впечатления: от точного сценического образа
+              до музыкальной атмосферы и живого диалога со зрителем.
+            </p>
           </div>
 
-          {/* Right: Content */}
-          <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-1 bg-red-600"></div>
-              <p className="text-red-600 tracking-[0.2em] font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                О ТРУППЕ
-              </p>
-            </div>
-
-            <h2 className="text-black mb-8 font-['Montserrat'] leading-[0.95] uppercase" style={{ fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 900 }}>
-              Театр<br />нового<br />формата
-            </h2>
-
-            <div className="grid grid-cols-3 gap-2 mb-8">
-              <div className="h-2 bg-red-600"></div>
-              <div className="h-2 bg-yellow-500"></div>
-              <div className="h-2 bg-black"></div>
-            </div>
-
-            <p className="text-black mb-6 font-['Inter'] leading-relaxed" style={{ fontSize: '1.125rem', fontWeight: 500 }}>
-              <span className="font-['Montserrat'] text-red-600 uppercase" style={{ fontSize: '1.5rem', fontWeight: 900 }}>ТУТ ШОУ</span> — это синтез классической театральной школы и современных форматов развлечения. 
-              Мы создаём живые, дышащие спектакли, где каждое представление уникально.
-            </p>
-
-            <p className="text-black/70 mb-10 font-['Inter'] leading-relaxed" style={{ fontSize: '1rem', fontWeight: 400 }}>
-              Наши актеры — профессионалы с многолетним опытом работы в театре и кино, 
-              виртуозно владеющие импровизацией и способные вовлечь в действие любую аудиторию.
-            </p>
-
-            {/* Features - Geometric Blocks */}
-            <div className="space-y-4">
-              <div className="flex items-start gap-0 group cursor-pointer">
-                <div className="w-16 h-16 bg-red-600 flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-500 transition-colors">
-                  <Users className="w-8 h-8 text-white" strokeWidth={2.5} />
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+            {troupeMembers.map((member, index) => (
+              <article
+                key={`${member.role}-${index}`}
+                className="group overflow-hidden rounded-[1.75rem] border border-black/10 bg-white transition-colors hover:border-[#c1121f]"
+              >
+                <div className="relative h-80 w-full overflow-hidden bg-gray-100">
+                  <ImageWithFallback
+                    src={member.photo}
+                    alt={member.name}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
                 </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <h3 className="mb-1 font-['Montserrat'] uppercase" style={{ fontSize: '0.875rem', fontWeight: 700 }}>Профессиональная команда</h3>
-                  <p className="text-white/70 font-['Inter']" style={{ fontSize: '0.8125rem', fontWeight: 400 }}>
-                    Актёры с опытом работы в ведущих театрах России
-                  </p>
-                </div>
-              </div>
 
-              <div className="flex items-start gap-0 group cursor-pointer">
-                <div className="w-16 h-16 bg-yellow-500 flex items-center justify-center flex-shrink-0 group-hover:bg-red-600 transition-colors">
-                  <Award className="w-8 h-8 text-black" strokeWidth={2.5} />
-                </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <h3 className="mb-1 font-['Montserrat'] uppercase" style={{ fontSize: '0.875rem', fontWeight: 700 }}>Уникальный формат</h3>
-                  <p className="text-white/70 font-['Inter']" style={{ fontSize: '0.8125rem', fontWeight: 400 }}>
-                    Иммерсивное ток-шоу, где зритель становится участником
-                  </p>
-                </div>
-              </div>
+                <div className="p-6">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <div className="font-['Inter'] text-[0.7rem] uppercase tracking-[0.2em] text-black/40">
+                        участник {index + 1}
+                      </div>
+                      <h4 className="mt-4 font-['Manrope'] text-2xl font-800 tracking-[-0.04em] text-[#111111]">
+                        {member.name}
+                      </h4>
+                    </div>
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-[#111111] font-['Inter'] text-xs font-700 text-[#f4c95d]">
+                      ТШ
+                    </div>
+                  </div>
 
-              <div className="flex items-start gap-0 group cursor-pointer">
-                <div className="w-16 h-16 bg-red-600 flex items-center justify-center flex-shrink-0 group-hover:bg-yellow-500 transition-colors">
-                  <Sparkles className="w-8 h-8 text-white" strokeWidth={2.5} />
+                  <div className="mt-5 inline-flex rounded-full bg-[#111111] px-3 py-1.5 font-['Inter'] text-xs font-600 uppercase tracking-[0.16em] text-white">
+                    {member.role}
+                  </div>
+
+                  <p className="mt-5 font-['Inter'] text-base leading-7 text-black/62">{member.note}</p>
+
+                  <div className="mt-6 h-px w-full bg-black/8" />
+                  <div className="mt-4 font-['Inter'] text-sm text-[#c1121f]">Фото / биография / спектакли</div>
                 </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <h3 className="mb-1 font-['Montserrat'] uppercase" style={{ fontSize: '0.875rem', fontWeight: 700 }}>Живая энергия</h3>
-                  <p className="text-white/70 font-['Inter']" style={{ fontSize: '0.8125rem', fontWeight: 400 }}>
-                    Импровизация, живая музыка и эмоциональное вовлечение
-                  </p>
-                </div>
-              </div>
-            </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>

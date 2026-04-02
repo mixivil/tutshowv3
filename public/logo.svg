@@ -1,0 +1,24 @@
+<svg viewBox="0 0 1600 350" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&display=swap');
+      .logo-text {
+        font-family: 'Manrope', Arial, sans-serif;
+        font-size: 280px;
+        font-weight: 900;
+        fill: #000000;
+        letter-spacing: -12px;
+      }
+    </style>
+  </defs>
+  
+  <!-- Left ТУТ -->
+  <text x="0" y="270" class="logo-text">ТУТ</text>
+  
+  <!-- Red diagonal slash - positioned between ТУТ and ШОУ -->
+  <!-- Top part wider, bottom part narrower - parallelogram effect -->
+  <polygon points="330,20 580,20 300,330 50,330" fill="#EF4444" />
+  
+  <!-- Right ШОУ -->
+  <text x="650" y="270" class="logo-text">ШОУ</text>
+</svg>

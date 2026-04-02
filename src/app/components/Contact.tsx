@@ -1,7 +1,8 @@
-import { useState } from 'react';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { Mail, Phone, Send } from 'lucide-react';
 
 export function Contact() {
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     organization: '',
@@ -9,288 +10,113 @@ export function Contact() {
     phone: '',
     eventType: '',
     date: '',
-    message: ''
+    message: '',
   });
 
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({
-        name: '',
-        organization: '',
-        email: '',
-        phone: '',
-        eventType: '',
-        date: '',
-        message: ''
-      });
-    }, 3000);
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
-    <section id="contact" className="relative py-24 bg-white">
-      {/* Geometric background */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-red-600 opacity-5"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-500 opacity-5 rotate-45"></div>
-
-      <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-12 h-1 bg-red-600"></div>
-            <p className="text-red-600 tracking-[0.2em] font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-              СВЯЖИТЕСЬ С НАМИ
+    <section id="contact" className="bg-white">
+      <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+        <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <div className="font-['Inter'] text-xs uppercase tracking-[0.2em] text-black/45">контакты</div>
+            <h2 className="mt-4 font-['Manrope'] text-[clamp(2.2rem,5vw,4rem)] font-800 leading-[0.98] tracking-[-0.05em] text-[#0a0a0a]">
+              Давайте обсудим ваше мероприятие
+            </h2>
+            <p className="mt-6 max-w-md font-['Inter'] text-lg leading-8 text-black/66">
+              Напишите дату, формат события и любые пожелания. Мы предложим подходящую версию спектакля и ответим в течение дня.
             </p>
-            <div className="w-12 h-1 bg-red-600"></div>
-          </div>
-          
-          <h2 className="text-black mb-6 font-['Montserrat'] leading-[0.95] uppercase relative inline-block" style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)', fontWeight: 900 }}>
-            <div className="absolute -top-4 -left-4 w-8 h-8 bg-red-600"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 bg-yellow-500"></div>
-            Оставьте<br />заявку
-          </h2>
-          
-          <div className="flex justify-center gap-2 mb-8">
-            <div className="w-24 h-1 bg-red-600"></div>
-            <div className="w-24 h-1 bg-yellow-500"></div>
-            <div className="w-24 h-1 bg-black"></div>
-          </div>
 
-          <p className="text-black/70 max-w-2xl mx-auto font-['Inter'] leading-relaxed" style={{ fontSize: '1rem', fontWeight: 400 }}>
-            Расскажите нам о вашем мероприятии, и мы предложим оптимальный формат 
-            и обсудим все детали сотрудничества
-          </p>
-        </div>
+            <div className="mt-10 space-y-5">
+              <a href="tel:+79991234567" className="flex items-center gap-4 rounded-[1.5rem] border border-black/10 bg-[#fff8e8] p-5 transition-colors hover:border-[#c1121f]/30">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white border border-black/10">
+                  <Phone className="h-5 w-5 text-[#c1121f]" />
+                </div>
+                <div>
+                  <div className="font-['Inter'] text-xs uppercase tracking-[0.16em] text-black/40">телефон</div>
+                  <div className="mt-1 font-['Manrope'] text-lg font-700 tracking-[-0.03em] text-[#0a0a0a]">+7 (999) 123-45-67</div>
+                </div>
+              </a>
 
-        <div className="grid lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
-          {/* Left: Contact Info */}
-          <div className="lg:col-span-1">
-            <h3 className="text-black mb-8 font-['Montserrat'] uppercase" style={{ fontSize: '1.25rem', fontWeight: 900 }}>
-              Контактная информация
-            </h3>
-
-            <div className="space-y-6">
-              <div className="flex items-start gap-0">
-                <div className="w-16 h-16 bg-red-600 flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-white" strokeWidth={2.5} />
+              <a href="mailto:info@tutshow.ru" className="flex items-center gap-4 rounded-[1.5rem] border border-black/10 bg-[#fff8e8] p-5 transition-colors hover:border-[#c1121f]/30">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white border border-black/10">
+                  <Mail className="h-5 w-5 text-[#c1121f]" />
                 </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <p className="text-white/50 mb-1 font-['Inter'] uppercase" style={{ fontSize: '0.625rem', fontWeight: 700 }}>Телефон</p>
-                  <a href="tel:+79991234567" className="text-white hover:text-yellow-500 transition-colors font-['Montserrat']" style={{ fontSize: '1.125rem', fontWeight: 700 }}>
-                    +7 (999) 123-45-67
-                  </a>
+                <div>
+                  <div className="font-['Inter'] text-xs uppercase tracking-[0.16em] text-black/40">email</div>
+                  <div className="mt-1 font-['Manrope'] text-lg font-700 tracking-[-0.03em] text-[#0a0a0a]">info@tutshow.ru</div>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-0">
-                <div className="w-16 h-16 bg-yellow-500 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-black" strokeWidth={2.5} />
-                </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <p className="text-white/50 mb-1 font-['Inter'] uppercase" style={{ fontSize: '0.625rem', fontWeight: 700 }}>Email</p>
-                  <a href="mailto:info@tutshow.ru" className="text-white hover:text-yellow-500 transition-colors font-['Montserrat']" style={{ fontSize: '1.125rem', fontWeight: 700 }}>
-                    info@tutshow.ru
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-0">
-                <div className="w-16 h-16 bg-red-600 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-white" strokeWidth={2.5} />
-                </div>
-                <div className="bg-black text-white p-4 flex-1">
-                  <p className="text-white/50 mb-1 font-['Inter'] uppercase" style={{ fontSize: '0.625rem', fontWeight: 700 }}>Офис</p>
-                  <p className="text-white font-['Montserrat']" style={{ fontSize: '1.125rem', fontWeight: 700 }}>
-                    Москва, Россия
-                  </p>
-                  <p className="text-white/60 font-['Inter']" style={{ fontSize: '0.75rem', fontWeight: 400 }}>
-                    Работаем по всей России
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 bg-red-600 text-white p-6 relative">
-              <div className="absolute top-0 right-0 w-8 h-8 bg-yellow-500"></div>
-              <p className="font-['Montserrat'] uppercase mb-2" style={{ fontSize: '0.875rem', fontWeight: 700 }}>Быстрый ответ</p>
-              <p className="font-['Inter']" style={{ fontSize: '0.8125rem', fontWeight: 400 }}>
-                Мы отвечаем на все заявки в течение 24 часов. 
-                Для срочных вопросов звоните по телефону.
-              </p>
+              </a>
             </div>
           </div>
 
-          {/* Right: Contact Form */}
-          <div className="lg:col-span-2">
-            <form onSubmit={handleSubmit} className="bg-black text-white p-10 relative">
-              <div className="absolute top-0 left-0 w-12 h-12 bg-red-600"></div>
-              <div className="absolute bottom-0 right-0 w-12 h-12 bg-yellow-500"></div>
+          <form onSubmit={handleSubmit} className="rounded-[2rem] border border-black/10 bg-[#ffffff] p-6 sm:p-8">
+            <div className="grid gap-5 sm:grid-cols-2">
+              <Field label="Ваше имя *">
+                <input type="text" name="name" required value={formData.name} onChange={handleChange} className="field" placeholder="Иван Иванов" />
+              </Field>
+              <Field label="Организация">
+                <input type="text" name="organization" value={formData.organization} onChange={handleChange} className="field" placeholder="Название компании" />
+              </Field>
+              <Field label="Email *">
+                <input type="email" name="email" required value={formData.email} onChange={handleChange} className="field" placeholder="email@example.com" />
+              </Field>
+              <Field label="Телефон *">
+                <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} className="field" placeholder="+7 (999) 123-45-67" />
+              </Field>
+              <Field label="Тип мероприятия *">
+                <select name="eventType" required value={formData.eventType} onChange={handleChange} className="field">
+                  <option value="">Выберите тип</option>
+                  <option value="corporate">Корпоративное мероприятие</option>
+                  <option value="festival">Фестиваль</option>
+                  <option value="private">Частное мероприятие</option>
+                  <option value="venue">Культурная площадка</option>
+                  <option value="other">Другое</option>
+                </select>
+              </Field>
+              <Field label="Желаемая дата">
+                <input type="date" name="date" value={formData.date} onChange={handleChange} className="field" />
+              </Field>
+            </div>
 
-              <div className="relative z-10">
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label htmlFor="name" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Ваше имя *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-red-600 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                      placeholder="Иван Иванов"
-                    />
-                  </div>
+            <div className="mt-5">
+              <Field label="Сообщение *">
+                <textarea name="message" required value={formData.message} onChange={handleChange} rows={6} className="field min-h-[140px] resize-none" placeholder="Расскажите о событии, площадке и пожеланиях" />
+              </Field>
+            </div>
 
-                  <div>
-                    <label htmlFor="organization" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Организация
-                    </label>
-                    <input
-                      type="text"
-                      id="organization"
-                      name="organization"
-                      value={formData.organization}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-yellow-500 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                      placeholder="ООО «Компания»"
-                    />
-                  </div>
-                </div>
+            <button
+              type="submit"
+              disabled={submitted}
+              className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0a0a0a] px-7 py-4 font-['Inter'] text-sm font-600 text-white transition-colors hover:bg-[#c1121f] disabled:opacity-60"
+            >
+              {submitted ? 'Заявка отправлена' : <><Send className="h-4 w-4" /> Отправить заявку</>}
+            </button>
 
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label htmlFor="email" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-red-600 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                      placeholder="email@example.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Телефон *
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      required
-                      value={formData.phone}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-yellow-500 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                      placeholder="+7 (999) 123-45-67"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label htmlFor="eventType" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Тип мероприятия *
-                    </label>
-                    <select
-                      id="eventType"
-                      name="eventType"
-                      required
-                      value={formData.eventType}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-red-600 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                    >
-                      <option value="">Выберите тип</option>
-                      <option value="corporate">Корпоративное мероприятие</option>
-                      <option value="festival">Фестиваль</option>
-                      <option value="private">Частное мероприятие</option>
-                      <option value="venue">Культурная площадка</option>
-                      <option value="other">Другое</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="date" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                      Желаемая дата
-                    </label>
-                    <input
-                      type="date"
-                      id="date"
-                      name="date"
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="w-full bg-white text-black border-4 border-white focus:border-yellow-500 px-4 py-3 outline-none transition-colors font-['Inter']"
-                      style={{ fontSize: '1rem' }}
-                    />
-                  </div>
-                </div>
-
-                <div className="mb-8">
-                  <label htmlFor="message" className="block text-white mb-2 font-['Inter'] uppercase" style={{ fontSize: '0.75rem', fontWeight: 700 }}>
-                    Сообщение *
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    value={formData.message}
-                    onChange={handleChange}
-                    rows={6}
-                    className="w-full bg-white text-black border-4 border-white focus:border-red-600 px-4 py-3 outline-none transition-colors resize-none font-['Inter']"
-                    style={{ fontSize: '1rem' }}
-                    placeholder="Расскажите о вашем мероприятии, количестве гостей, особых пожеланиях..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={submitted}
-                  className="w-full bg-red-600 text-white px-8 py-5 hover:bg-yellow-500 hover:text-black transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed font-['Inter'] uppercase relative group"
-                  style={{ fontSize: '0.875rem', fontWeight: 700, letterSpacing: '0.05em' }}
-                >
-                  <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-500 group-hover:bg-red-600 transition-colors"></div>
-                  {submitted ? (
-                    'Заявка отправлена!'
-                  ) : (
-                    <>
-                      <Send className="w-5 h-5" strokeWidth={2.5} />
-                      Отправить заявку
-                    </>
-                  )}
-                </button>
-
-                <p className="text-white/50 text-center mt-4 font-['Inter']" style={{ fontSize: '0.625rem', fontWeight: 400 }}>
-                  Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-                </p>
-              </div>
-            </form>
-          </div>
+            <p className="mt-4 font-['Inter'] text-xs leading-5 text-black/45">
+              Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности.
+            </p>
+          </form>
         </div>
       </div>
     </section>
+  );
+}
+
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block font-['Inter'] text-sm font-500 text-black/68">{label}</span>
+      {children}
+    </label>
   );
 }
