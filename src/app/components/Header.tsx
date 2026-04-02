@@ -22,14 +22,6 @@ export function Header() {
               className="h-auto w-full object-contain"
             />
           </div>
-          <div>
-            <div className="font-['Manrope'] text-[1.05rem] font-800 tracking-[-0.03em] text-[#0a0a0a]">
-              ТУТ ШОУ
-            </div>
-            <div className="font-['Inter'] text-[0.68rem] uppercase tracking-[0.22em] text-black/45">
-              театр, который приедет к вам
-            </div>
-          </div>
         </button>
 
         <button
